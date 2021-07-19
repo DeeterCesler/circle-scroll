@@ -1,0 +1,89 @@
+.tall-boi-hours {
+    height: 2000px;
+}
+
+.tall-boi-hours, footer {
+    padding: 10px;
+}
+
+.progress {
+    position: fixed;
+    height: 250px;
+    width: 250px;
+    top: 50px;
+    right: 50px;
+    z-index: 3;
+    background-color: aqua;
+}
+
+.red {
+    background-color: red;
+}
+
+.insider {
+    background-color: black;
+    width: 100%;
+    height: 0;
+    z-index: 5;
+}
+
+svg {
+    position: fixed;
+}
+
+#circle-wrapper {
+    transform: rotate(-90deg);
+    right: 50px;
+}
+
+#circle-lol {
+    stroke: black;
+}
+
+#emoji {
+    margin-top: 85px;
+    right: 135px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.shown {
+    visibility: visible;
+}
+
+.check-mark-wrapper {
+    left: 50px !important;
+}
+
+.pop-in {
+    animation: pop-in;
+    animation-duration: 1s;
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.grey-out {
+    animation: grey-out;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes grey-out {
+    0% {
+        /* stroke: #000; */
+    }
+    100% {
+        stroke: #b1cc33;
+    }
+}
