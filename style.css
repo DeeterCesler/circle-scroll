@@ -29,20 +29,29 @@
 
 svg {
     position: fixed;
+    z-index: 3;
+}
+
+.white-wrapper svg {
+    right: 50px;
+    z-index: 1;
 }
 
 #circle-wrapper {
     transform: rotate(-90deg);
     right: 50px;
+    z-index: 3;
 }
 
 #circle-lol {
     stroke: black;
+    z-index: 3;
 }
 
 #emoji {
     margin-top: 50px;
     right: 80px;
+    z-index: 3;
 }
 
 .hidden {
@@ -53,21 +62,21 @@ svg {
     visibility: visible;
 }
 
-.check-mark-wrapper {
-    /* left: 50px !important; */
-}
-
 .pop-in {
     animation: pop-in;
     animation-duration: 1s;
+    z-index: 5;
+    position: relative;
 }
 
 @keyframes pop-in {
     0% {
         opacity: 0;
+        z-index: 5;
     }
     100% {
         opacity: 1;
+        z-index: 5;
     }
 }
 
