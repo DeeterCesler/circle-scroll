@@ -11,25 +11,22 @@
 <body>
     <br/>
     <div class="check-mark-wrapper">
-        <!-- <circle class="progress" cx="25" cy="25" r="22" style="stroke-dasharray: 137.4; stroke-dashoffset: 95.7678;">
-            <div class="insider">hello hello</div>
-        </circle> -->
-        <svg viewBox="0 0 100 100" height="250px" xmlns="http://www.w3.org/2000/svg" id="circle-wrapper">
-            <!-- <line id="line-lol" x1="0" y1="0" x2="0" y2="5" stroke="black" /> -->
-            <circle id="circle-lol" stroke-linecap="round"  
-            cx="50" cy="50" r="25" stroke-width="2" fill="none" stroke-dasharray="315" stroke-dashoffset="315" fill="none" />
-
-            <!-- If you do not specify the stroke
-                color the line will not be visible -->
-        </svg>
-        <svg width="72px" height="72px" viewBox="0 0 72 72" id="emoji" xmlns="http://www.w3.org/2000/svg">
-            <g id="color">
-            <path fill="#b1cc33" d="m61.5 23.3-8.013-8.013-25.71 25.71-9.26-9.26-8.013 8.013 17.42 17.44z"/>
-            </g>
-            <g id="line">
-            <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="m10.5 39.76 17.42 17.44 33.58-33.89-8.013-8.013-25.71 25.71-9.26-9.26z"/>
-            </g>
-        </svg>
+        <div class="circle-wrapper">
+            <svg viewBox="0 0 100 100" height="150px" xmlns="http://www.w3.org/2000/svg" id="circle-wrapper">
+                <circle id="circle-lol" stroke-linecap="round"  
+                cx="50" cy="50" r="25" stroke-width="2" fill="none" stroke-dasharray="315" stroke-dashoffset="315" fill="none" />
+            </svg>
+        </div>
+        <div class="checkmark hidden">
+            <svg width="72px" height="72px" viewBox="0 0 100 100" id="emoji" xmlns="http://www.w3.org/2000/svg">
+                <g id="color">
+                <path fill="#b1cc33" d="m61.5 23.3-8.013-8.013-25.71 25.71-9.26-9.26-8.013 8.013 17.42 17.44z"/>
+                </g>
+                <g id="line">
+                <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2" d="m10.5 39.76 17.42 17.44 33.58-33.89-8.013-8.013-25.71 25.71-9.26-9.26z"/>
+                </g>
+            </svg>
+        </div>
     </div>
     <div class="tall-boi-hours">
         <h1>opener</h1>
@@ -90,14 +87,14 @@
             }
 
             if(parseInt($("#circle-lol").attr("stroke-dashoffset")) <= 159) {
-                $("#emoji").removeClass('hidden');
-                $("#emoji").addClass('pop-in');
+                $(".checkmark").removeClass('hidden');
+                $(".checkmark").addClass('pop-in');
                 $("#circle-lol").addClass('grey-out');
             }
 
             if(parseInt($("#circle-lol").attr("stroke-dashoffset")) > 159) {
-                $("#emoji").addClass('hidden');
-                $("#emoji").removeClass('pop-in');
+                $(".checkmark").addClass('hidden');
+                $(".checkmark").removeClass('pop-in');
                 $("#circle-lol").removeClass('grey-out');
             }
         });
