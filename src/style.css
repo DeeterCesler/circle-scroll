@@ -1,0 +1,96 @@
+/* this is scroller CSS until I figure out how to abstract it out */
+
+svg {
+    position: fixed;
+    z-index: 3;
+  }
+  
+  .white-wrapper svg {
+    right: 50px;
+    z-index: 2 !important;
+  }
+  
+  #circle-wrapper {
+    transform: rotate(-90deg);
+    right: 50px;
+    z-index: 3;
+  }
+  
+  #circle-lol {
+    stroke: black;
+    z-index: 3;
+  }
+  
+  .check-mark-wrapper {
+    position: fixed;
+    z-index: 999;
+    top: 2rem;
+  }
+  
+  #check {
+    margin-top: 50px;
+    right: 80px;
+    z-index: 3;
+  }
+  
+  .hidden {
+    visibility: hidden;
+  }
+  
+  .shown {
+    visibility: visible;
+  }
+  
+  .pop-in, .pop-in-initial {
+    animation: pop-in;
+    animation-duration: 0.5s;
+    position: relative;
+  }
+  
+  .pop-in-initial {
+    animation-duration: 0.2s;
+  }
+  
+  @keyframes pop-in {
+    0% {
+        opacity: 0;
+        z-index: 5;
+    }
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
+  }
+  
+  .fade-out {
+    animation: fade-out;
+    animation-duration: 1s;
+  }
+  
+  @keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+  }
+  
+  
+  .grey-out {
+    animation: grey-out;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes grey-out {
+    0% {
+        /* stroke: #000; */
+    }
+    100% {
+        stroke: #000;
+    }
+  }
+  
+  /* end scroller CSS */

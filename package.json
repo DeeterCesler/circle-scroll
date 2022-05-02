@@ -1,18 +1,32 @@
 {
   "name": "circle-scroll",
   "version": "0.0.1",
-  "main": "build/index.js",
+  "main": "dist/Scroller.js",
   "author": "Deeter Cesler",
   "license": "MIT",
+  "scripts": {
+    "build": "babel src -d dist"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DeeterCesler/circle-scroll.git"
   },
+  "jsx": "react",
   "bugs": {
     "url": "https://github.com/DeeterCesler/circle-scroll/issues"
   },
   "homepage": "https://github.com/DeeterCesler/circle-scroll#readme",
   "dependencies": {
-    "jquery": "^3.6.0"
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "jquery": "^3.6.0",
+    "react": "^18.1.0",
+    "webpack": "^5.70.0"
+  },
+  "plugins": [
+    "@babel/plugin-transform-react-jsx"
+  ],
+  "devDependencies": {
+    "@babel/preset-react": "^7.16.7"
   }
 }

@@ -9,20 +9,38 @@ export default function Scroller(props){
     // load it sees the DOM has a height of zero.
 
     $(window).on('scroll', function() {
-        const maxHeight = Math.max(
-            document.body.scrollHeight, document.documentElement.scrollHeight,
-            document.body.offsetHeight, document.documentElement.offsetHeight,
-            document.body.clientHeight, document.documentElement.clientHeight
-        );
-        
-        const baseHeight = $(window).height();
-        const currentHeight = $(window).scrollTop() + baseHeight
-        const scrollPercentage = ((currentHeight-baseHeight)/(maxHeight-baseHeight)*100);
+        // get content element height
+        // get distance of element height from top of page
+        // get scroll distance
+        // get % of scroll distance / (el height  + dis from top)
 
+        console.log('the four')
+        const bodyEl = $(".body-content");
+        console.log(bodyEl.height())
+        console.log(bodyEl.get(0).getBoundingClientRect().bottom)
+        console.log(bodyEl.get(0).getBoundingClientRect().y * -1)
+        
+        const bottomOfContent = bodyEl.get(0).getBoundingClientRect().bottom + (bodyEl.get(0).getBoundingClientRect().y * -1);
+        const scrollDistance = $(window).scrollTop();
+        console.log('scrollDistance')
+        console.log(bottomOfContent)
+        console.log(scrollDistance)
+        // var elDistanceToTop = window.pageYOffset + el.getBoundingClientRect().top
+        
+        const baseHeight = bodyEl.height();
+        // const baseHeight = $(window).height();
+        const currentHeight = $(".body-content").scrollTop() + baseHeight
+        // console.log(currentHeight)
+        const scrollPercentage =  ((scrollDistance)/(bottomOfContent)*100);
+        console.log('scrollPercentage')
+        console.log(scrollPercentage)
+
+        // I hate this but I don't understand dasharray-offset enough to do better.
         const magicNumber = 315;
-        const magicMultiplier = 1.8;
+        const magicMultiplier = 1.55;
         const circleFill = 159;
-        $("#circle-lol").attr("stroke-dashoffset", `${magicNumber-(scrollPercentage*magicMultiplier)}px`);
+        const offSet = magicNumber-(scrollPercentage*magicMultiplier)
+        $("#circle-lol").attr("stroke-dashoffset", `${offSet > 0 ? offSet : 0}px`);
         
         if(scrollPercentage > 1) $(".white-wrapper").removeClass('hidden').addClass('pop-in-initial');
 
@@ -39,7 +57,7 @@ export default function Scroller(props){
     });
     
     return(
-        <div>
+        <div className="body-content">
             <div className="check-mark-wrapper">
                 <div className="circle-background"></div>
                 <div className="circle-wrapper">
