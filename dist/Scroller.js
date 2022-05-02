@@ -6,28 +6,10 @@ export default function Scroller(props) {
   // I can't just declare it up here because on initial
   // load it sees the DOM has a height of zero.
   $(window).on('scroll', function () {
-    // get content element height
-    // get distance of element height from top of page
-    // get scroll distance
-    // get % of scroll distance / (el height  + dis from top)
-    console.log('the four');
     const bodyEl = $(".body-content");
-    console.log(bodyEl.height());
-    console.log(bodyEl.get(0).getBoundingClientRect().bottom);
-    console.log(bodyEl.get(0).getBoundingClientRect().y * -1);
     const bottomOfContent = bodyEl.get(0).getBoundingClientRect().bottom + bodyEl.get(0).getBoundingClientRect().y * -1;
     const scrollDistance = $(window).scrollTop();
-    console.log('scrollDistance');
-    console.log(bottomOfContent);
-    console.log(scrollDistance); // var elDistanceToTop = window.pageYOffset + el.getBoundingClientRect().top
-
-    const baseHeight = bodyEl.height(); // const baseHeight = $(window).height();
-
-    const currentHeight = $(".body-content").scrollTop() + baseHeight; // console.log(currentHeight)
-
-    const scrollPercentage = scrollDistance / bottomOfContent * 100;
-    console.log('scrollPercentage');
-    console.log(scrollPercentage); // I hate this but I don't understand dasharray-offset enough to do better.
+    const scrollPercentage = scrollDistance / bottomOfContent * 100; // I hate this but I don't understand dasharray-offset enough to do better.
 
     const magicNumber = 315;
     const magicMultiplier = 1.55;
@@ -40,9 +22,7 @@ export default function Scroller(props) {
     if (circleProgression <= circleFill) {
       $(".checkmark").removeClass('hidden').addClass('pop-in');
       $("#circle-lol").addClass('grey-out');
-    }
-
-    if (circleProgression > circleFill) {
+    } else {
       $(".checkmark").addClass('hidden').removeClass('pop-in');
       $("#circle-lol").removeClass('grey-out');
     }
