@@ -1,75 +1,57 @@
-.tall-boi-hours {
-    height: 2000px;
-}
-
-.tall-boi-hours, footer {
-    padding: 10px;
-}
-
-.progress {
-    position: fixed;
-    height: 250px;
-    width: 250px;
-    top: 50px;
-    right: 50px;
-    z-index: 3;
-    background-color: aqua;
-}
-
-.red {
-    background-color: red;
-}
-
-.insider {
-    background-color: black;
-    width: 100%;
-    height: 0;
-    z-index: 5;
-}
+/* this is scroller CSS until I figure out how to abstract it out */
 
 svg {
     position: fixed;
     z-index: 3;
-}
-
-.white-wrapper svg {
+  }
+  
+  .white-wrapper svg {
     right: 50px;
-    z-index: 1;
-}
-
-#circle-wrapper {
+    z-index: 2 !important;
+  }
+  
+  #circle-wrapper {
     transform: rotate(-90deg);
     right: 50px;
     z-index: 3;
-}
-
-#circle-lol {
+  }
+  
+  #circle-lol {
     stroke: black;
     z-index: 3;
-}
-
-#emoji {
+  }
+  
+  .check-mark-wrapper {
+    position: fixed;
+    z-index: 999;
+    top: 2rem;
+  }
+  
+  #check {
     margin-top: 50px;
     right: 80px;
     z-index: 3;
-}
-
-.hidden {
+  }
+  
+  .hidden {
     visibility: hidden;
-}
-
-.shown {
+  }
+  
+  .shown {
     visibility: visible;
-}
-
-.pop-in {
+  }
+  
+  .pop-in, .pop-in-initial {
     animation: pop-in;
-    animation-duration: 1s;
-    z-index: 5;
+    animation-duration: 0.5s;
     position: relative;
-}
-
-@keyframes pop-in {
+  }
+  
+  .pop-in-initial {
+    animation-duration: 0.2s;
+  }
+  
+  @keyframes pop-in {
     0% {
         opacity: 0;
         z-index: 5;
@@ -78,35 +60,37 @@ svg {
         opacity: 1;
         z-index: 5;
     }
-}
-
-.fade-out {
+  }
+  
+  .fade-out {
     animation: fade-out;
     animation-duration: 1s;
-}
-
-@keyframes fade-out {
+  }
+  
+  @keyframes fade-out {
     0% {
         opacity: 1;
     }
     100% {
         opacity: 0;
     }
-}
-
-
-.grey-out {
+  }
+  
+  
+  .grey-out {
     animation: grey-out;
     animation-duration: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-}
-
-@keyframes grey-out {
+  }
+  
+  @keyframes grey-out {
     0% {
         /* stroke: #000; */
     }
     100% {
-        stroke: #b1cc33;
+        stroke: #000;
     }
-}
+  }
+  
+  /* end scroller CSS */

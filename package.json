@@ -1,0 +1,18 @@
+{
+  "name": "circle-scroll",
+  "version": "0.0.1",
+  "main": "build/index.js",
+  "author": "Deeter Cesler",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeeterCesler/circle-scroll.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DeeterCesler/circle-scroll/issues"
+  },
+  "homepage": "https://github.com/DeeterCesler/circle-scroll#readme",
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}
