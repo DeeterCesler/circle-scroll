@@ -7,22 +7,35 @@ export default function Scroller(props) {
   // load it sees the DOM has a height of zero.
   $(window).on('scroll', function () {
     const bodyEl = $(".body-content");
-    const bottomOfContent = bodyEl.get(0).getBoundingClientRect().bottom + bodyEl.get(0).getBoundingClientRect().y * -1;
-    const scrollDistance = $(window).scrollTop();
-    const scrollPercentage = scrollDistance / bottomOfContent * 100; // I hate this but I don't understand dasharray-offset enough to do better.
+    const bottomOfContent = bodyEl.get(0).getBoundingClientRect().height + bodyEl.offset().top; // the percentage of catch-up - the accelerator: 
 
-    const magicNumber = 315;
-    const magicMultiplier = 1.55;
-    const circleFill = 159;
-    const offSet = magicNumber - scrollPercentage * magicMultiplier;
-    $("#circle-lol").attr("stroke-dashoffset", `${offSet > 0 ? offSet : 0}px`);
-    if (scrollPercentage > 1) $(".white-wrapper").removeClass('hidden').addClass('pop-in-initial');
-    const circleProgression = parseInt($("#circle-lol").attr("stroke-dashoffset"));
+    const scrollPercentAccelerator = 1 + bodyEl.offset().top / bottomOfContent;
+    const scrollDistance = $(window).scrollTop() + $(window).height() - bodyEl.offset().top;
+    const scrollPercentage = Math.min(scrollDistance * scrollPercentAccelerator / bottomOfContent * 100, 100);
+    /*  
+        I hate this but I don't understand dasharray-offset enough to do better.
+         0% read is 200% stroke offset.
+        100% read is 40% stroke offset.
+        As the user reads, 200% offset goes down to 40% offset.
+    */
 
-    if (circleProgression <= circleFill) {
+    const magicMultiplier = 2; // because e.g. 50% read * 2.4 => 120%, making the stroke offset halfway
+
+    const magicNumber = 200;
+    const circleFill = 40;
+    const offSet = Math.max(-40, magicNumber - scrollPercentage * magicMultiplier);
+    const checkedOffset = offSet >= magicNumber ? magicNumber : offSet + circleFill;
+    $("#circle-lol").attr("stroke-dashoffset", `${checkedOffset}%`);
+    if (offSet < magicNumber - circleFill) $(".white-wrapper").removeClass('hidden').addClass('pop-in-initial');
+    const circleProgressionPercentage = parseInt($("#circle-lol").attr("stroke-dashoffset"));
+
+    if (circleProgressionPercentage <= circleFill && $(".checkmark").hasClass('hidden')) {
       $(".checkmark").removeClass('hidden').addClass('pop-in');
       $("#circle-lol").addClass('grey-out');
-    } else {
+    } // this is a separate if-check to prevent adding the class repeatedly
+
+
+    if (circleProgressionPercentage > circleFill && $(".checkmark").hasClass('pop-in')) {
       $(".checkmark").addClass('hidden').removeClass('pop-in');
       $("#circle-lol").removeClass('grey-out');
     }
@@ -48,8 +61,8 @@ export default function Scroller(props) {
     r: "25",
     strokeWidth: "2",
     fill: "none",
-    strokeDasharray: "315",
-    strokeDashoffset: "315"
+    strokeDasharray: "200%",
+    strokeDashoffset: "200%"
   }))), /*#__PURE__*/React.createElement("div", {
     className: "checkmark hidden"
   }, /*#__PURE__*/React.createElement("svg", {
