@@ -1,6 +1,6 @@
 {
   "name": "circle-scroll",
-  "version": "0.0.2.1",
+  "version": "0.0.3",
   "main": "dist/Scroller.js",
   "author": "Deeter Cesler",
   "license": "MIT",
