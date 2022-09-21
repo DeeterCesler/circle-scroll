@@ -33,12 +33,14 @@ svg {
     z-index: 3;
   }
   
-  .hidden {
-    visibility: hidden;
+  #x-icon {
+    margin-top: 52px;
+    right: 102px;
+    z-index: 3;
   }
   
-  .shown {
-    visibility: visible;
+  .hidden {
+    visibility: hidden;
   }
   
   .pop-in, .pop-in-initial {

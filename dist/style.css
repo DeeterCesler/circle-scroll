@@ -28,8 +28,14 @@ svg {
   }
   
   #check {
-    margin-top: 50px;
-    right: 80px;
+    margin-top: 45px;
+    right: 71px;
+    z-index: 3;
+  }
+
+  #x-icon {
+    margin-top: 55px;
+    right: 105px;
     z-index: 3;
   }
   

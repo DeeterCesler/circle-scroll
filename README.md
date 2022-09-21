@@ -20,6 +20,13 @@ Whatever content you have, simply wrap it as a child of `<Scroller>` parent elem
 
 This is ideal for any block of content that is longer where you're trying to increase the percentage of users who actually read it.
 
+You can also turn the scroller into an optional _link_ with the link attribute.
+
+For example, if you wanted your scroller to also work as a default "Home" button to your root domain, you could do this:
+
+```
+<Scroller link="/">
+```
 
 ### Next iterations
 
