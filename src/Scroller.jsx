@@ -129,25 +129,27 @@ export default function Scroller({
     
     return(        
         <div className="body-content">
-            <a href={link} style={{maxHeight: 80}}>
-                <div className="check-mark-wrapper">
-                    <div className="circle-background"></div>
-                    <div className="circle-wrapper">
-                        <svg viewBox="0 0 100 100" height="150px" xmlns="http://www.w3.org/2000/svg" id="circle-wrapper">
-                            <circle id="circle-lol" strokeLinecap="round"  
-                            cx="50" cy="50" r="25" strokeWidth="2" fill="none" strokeDasharray="200%" strokeDashoffset="200%" className={isGreyed ? 'grey-out' : ''} />
-                        </svg>
+            <div className="scroller-container">
+                <a href={link}>
+                    <div className="check-mark-wrapper">
+                        <div className="circle-background"></div>
+                        <div className="circle-wrapper">
+                            <svg viewBox="0 0 100 100" height="150px" xmlns="http://www.w3.org/2000/svg" id="circle-wrapper">
+                                <circle id="circle-lol" strokeLinecap="round"  
+                                cx="50" cy="50" r="25" strokeWidth="2" fill="none" strokeDasharray="200%" strokeDashoffset="200%" className={isGreyed ? 'grey-out' : ''} />
+                            </svg>
+                        </div>
+                        {renderCheckmark()}
+                        {renderXMark()}
+                        <div className={`white-wrapper ${!showWhite ? 'hidden' : ''}`}>
+                            <svg viewBox="0 0 100 100" height="150px" xmlns="http://www.w3.org/2000/svg" id="white-circle">
+                                <circle strokeLinecap="round"  
+                                cx="50" cy="50" r="29" strokeWidth="2" fill="white" strokeDasharray="315" strokeDashoffset="315" />
+                            </svg>
+                        </div>
                     </div>
-                    {renderCheckmark()}
-                    {renderXMark()}
-                    <div className={`white-wrapper ${!showWhite ? 'hidden' : ''}`}>
-                        <svg viewBox="0 0 100 100" height="150px" xmlns="http://www.w3.org/2000/svg" id="white-circle">
-                            <circle strokeLinecap="round"  
-                            cx="50" cy="50" r="29" strokeWidth="2" fill="white" strokeDasharray="315" strokeDashoffset="315" />
-                        </svg>
-                    </div>
-                </div>
-            </a>
+                </a>
+            </div>
             {children}
         </div>
     )

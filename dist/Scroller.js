@@ -121,11 +121,10 @@ export default function Scroller({
   };
   return /*#__PURE__*/React.createElement("div", {
     className: "body-content"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "scroller-container"
   }, /*#__PURE__*/React.createElement("a", {
-    href: link,
-    style: {
-      maxHeight: 80
-    }
+    href: link
   }, /*#__PURE__*/React.createElement("div", {
     className: "check-mark-wrapper"
   }, /*#__PURE__*/React.createElement("div", {
@@ -164,5 +163,5 @@ export default function Scroller({
     fill: "white",
     strokeDasharray: "315",
     strokeDashoffset: "315"
-  }))))), children);
+  })))))), children);
 }

@@ -1,65 +1,151 @@
 /* this is scroller CSS until I figure out how to abstract it out */
 
+.scroller-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.scroller-container a {
+    pointer-events: auto;
+}
+
 svg {
     position: fixed;
     z-index: 3;
-  }
+}
   
-  .white-wrapper svg {
+.white-wrapper svg {
     right: 50px;
     z-index: 2 !important;
-  }
+}
   
-  #circle-wrapper {
+#circle-wrapper {
     transform: rotate(-90deg);
     right: 50px;
     z-index: 3;
-  }
+}
   
-  #circle-lol {
+#circle-lol {
     stroke: black;
     z-index: 3;
-  }
+}
   
-  .check-mark-wrapper {
+.check-mark-wrapper {
     position: fixed;
     z-index: 999;
     top: 2rem;
-  }
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
   
-  #check {
+#check {
     margin-top: 50px;
     right: 80px;
     z-index: 3;
-  }
+}
   
-  #x-icon {
+#x-icon {
     margin-top: 52px;
     right: 102px;
     z-index: 3;
-  }
+}
   
-  .hidden {
+.hidden {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none;
-  }
+}
   
-  .checkmark, .x-mark, .white-wrapper {
+.checkmark, .x-mark, .white-wrapper {
     opacity: 0;
     visibility: visible;
     pointer-events: auto;
     transition: opacity 5s ease-out 1s, visibility 0s 1s;
-  }
+}
   
-  .white-wrapper:not(.hidden) {
+.white-wrapper:not(.hidden) {
     opacity: 1;
     visibility: visible;
-  }
+}
   
-  .grey-out {
+.grey-out {
     stroke: #000;
     transition: stroke 5s ease-out;
-  }
-  
-  /* end scroller CSS */
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    .scroller-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 9999;
+    }
+
+    .check-mark-wrapper {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: auto;
+        height: auto;
+    }
+
+    #circle-wrapper {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        height: 40px !important;
+        width: 40px !important;
+        transform: rotate(-90deg);
+    }
+
+    .white-wrapper svg {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        height: 40px !important;
+        width: 40px !important;
+    }
+
+    #check {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 20px !important;
+        height: 20px !important;
+        margin-top: 0;
+    }
+
+    #x-icon {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 20px !important;
+        height: 20px !important;
+        margin-top: 0;
+    }
+
+    .checkmark svg {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 20px !important;
+        height: 20px !important;
+        margin-top: 0;
+    }
+
+    .checkmark img, .x-mark img {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+/* end scroller CSS */
