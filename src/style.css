@@ -40,59 +40,26 @@ svg {
   }
   
   .hidden {
-    visibility: hidden;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
   }
   
-  .pop-in, .pop-in-initial {
-    animation: pop-in;
-    animation-duration: 0.5s;
-    position: relative;
+  .checkmark, .x-mark, .white-wrapper {
+    opacity: 0;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 5s ease-out 1s, visibility 0s 1s;
   }
   
-  .pop-in-initial {
-    animation-duration: 0.2s;
+  .white-wrapper:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
   }
-  
-  @keyframes pop-in {
-    0% {
-        opacity: 0;
-        z-index: 5;
-    }
-    100% {
-        opacity: 1;
-        z-index: 5;
-    }
-  }
-  
-  .fade-out {
-    animation: fade-out;
-    animation-duration: 1s;
-  }
-  
-  @keyframes fade-out {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-  }
-  
   
   .grey-out {
-    animation: grey-out;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
-  
-  @keyframes grey-out {
-    0% {
-        /* stroke: #000; */
-    }
-    100% {
-        stroke: #000;
-    }
+    stroke: #000;
+    transition: stroke 5s ease-out;
   }
   
   /* end scroller CSS */
