@@ -1,60 +1,57 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import $ from "jquery";
 import "./style.css"
 
 export default function Scroller(props){    
+    const bodyElRef = useRef(null);
+    const bottomOfContentRef = useRef(null);
+    const scrollPercentAcceleratorRef = useRef(null);
 
-    // TODO: add caching so it's not constantly recalculating body window
-    // I can't just declare it up here because on initial
-    // load it sees the DOM has a height of zero.
+    useEffect(() => {
+        // Cache the body element and initial calculations once the component mounts
+        bodyElRef.current = $(".body-content");
+        bottomOfContentRef.current = bodyElRef.current.get(0).getBoundingClientRect().height + bodyElRef.current.offset().top;
+        scrollPercentAcceleratorRef.current = 1 + bodyElRef.current.offset().top / bottomOfContentRef.current;
 
-    $(window).on('scroll', function() {
+        const handleScroll = () => {
+            const scrollDistance = $(window).scrollTop() + $(window).height() - bodyElRef.current.offset().top;
+            const scrollPercentage = Math.min(((scrollDistance * scrollPercentAcceleratorRef.current)/bottomOfContentRef.current)*100, 100);
 
-        const bodyEl = $(".body-content");
+            const magicMultiplier = 2;
+            const magicNumber = 200;
+            const circleFill = 40;
+            const offSet = Math.max(-40, magicNumber-(scrollPercentage*magicMultiplier));
 
-        const bottomOfContent = bodyEl.get(0).getBoundingClientRect().height + bodyEl.offset().top;
-        
-        // the percentage of catch-up - the accelerator: 
-        const scrollPercentAccelerator = 1 + bodyEl.offset().top / bottomOfContent;
+            const checkedOffset = offSet >= magicNumber ? magicNumber : offSet + (circleFill);
+            $("#circle-lol").attr("stroke-dashoffset", `${checkedOffset}%`);
+            
+            if(offSet < magicNumber - circleFill) {
+                $(".white-wrapper").removeClass('hidden').addClass('pop-in-initial');
+                if ($(".checkmark").hasClass('hidden')) {
+                    $(".x-mark").removeClass('hidden').addClass('pop-in-initial');
+                }
+            }
 
-        const scrollDistance = $(window).scrollTop() + $(window).height() - bodyEl.offset().top;
-        const scrollPercentage =  Math.min(((scrollDistance * scrollPercentAccelerator)/bottomOfContent)*100, 100);
+            const circleProgressionPercentage = parseInt($("#circle-lol").attr("stroke-dashoffset"));
+            if(circleProgressionPercentage <= circleFill && $(".checkmark").hasClass('hidden')) {
+                $(".checkmark").removeClass('hidden').addClass('pop-in');
+                $(".x-mark").addClass('hidden');
+                $("#circle-lol").addClass('grey-out');
+            }
+            
+            if (circleProgressionPercentage > circleFill) {
+                $(".checkmark").addClass('hidden').removeClass('pop-in');
+                $("#circle-lol").removeClass('grey-out');
+            }
+        };
 
-        /*  
-            I hate this but I don't understand dasharray-offset enough to do better.
+        $(window).on('scroll', handleScroll);
 
-            0% read is 200% stroke offset.
-            100% read is 40% stroke offset.
-            As the user reads, 200% offset goes down to 40% offset.
-        */
-
-        const magicMultiplier = 2; // because e.g. 50% read * 2.4 => 120%, making the stroke offset halfway
-        const magicNumber = 200;
-        const circleFill = 40;
-        const offSet = Math.max(-40, magicNumber-(scrollPercentage*magicMultiplier));
-
-        const checkedOffset = offSet >= magicNumber ? magicNumber : offSet + (circleFill);
-        $("#circle-lol").attr("stroke-dashoffset", `${checkedOffset}%`);
-        
-        if(offSet < magicNumber - circleFill) {
-            $(".white-wrapper").removeClass('hidden').addClass('pop-in-initial');
-            $(".x-mark").removeClass('hidden').addClass('pop-in-initial');
-        }
-
-        const circleProgressionPercentage = parseInt($("#circle-lol").attr("stroke-dashoffset"));
-        if(circleProgressionPercentage <= circleFill && $(".checkmark").hasClass('hidden')) {
-            $(".checkmark").removeClass('hidden').addClass('pop-in');
-            $(".x-mark").addClass('hidden').removeClass('pop-in');
-            $("#circle-lol").addClass('grey-out');
-        }
-
-        // this is a separate if-check to prevent adding the class repeatedly
-        if (circleProgressionPercentage > circleFill && $(".checkmark").hasClass('pop-in')) {
-            $(".checkmark").addClass('hidden').removeClass('pop-in');
-            $(".x-mark").removeClass('hidden').addClass('pop-in');
-            $("#circle-lol").removeClass('grey-out');
-        }
-    });
+        // Cleanup function to remove the scroll listener
+        return () => {
+            $(window).off('scroll', handleScroll);
+        };
+    }, []);
     
     return(        
         <div className="body-content">
